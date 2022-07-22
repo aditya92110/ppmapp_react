@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import {Stack} from '@mui/material';
-import 'C:/Users/ASUS/matui/src/App.css';
+import '../App.css';
 
 export default function Footer() {
   return (

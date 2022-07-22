@@ -6,7 +6,7 @@ import Projects from "./pages/projects";
 import Dictionary from "./pages/dictionary";
 import Footer from "./pages/footer";
 import Results from "./pages/results";
-import JsonDataDisplay from "C:/Users/ASUS/matui/src/pages/jasontable.js"
+import JsonDataDisplay from "./pages/jasontable.js"
 
 function App() {
   return (

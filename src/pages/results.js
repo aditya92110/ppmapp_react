@@ -9,7 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import 'C:/Users/ASUS/matui/src/App.css';
+import '../App.css';
 import { Button, Typography } from '@mui/material';
 import axios from "axios";
 import * as qs from 'qs';

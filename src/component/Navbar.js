@@ -5,7 +5,7 @@ import {
   CssBaseline,
   Typography,
 } from "@material-ui/core";
-import 'C:/Users/ASUS/matui/src/App.css';
+import '../App.css';
 import { Link } from "react-router-dom";
 
 function Navbar() {

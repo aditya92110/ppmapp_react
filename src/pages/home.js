@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
-import 'C:/Users/ASUS/matui/src/App.css';
+import '../App.css';
 import { Paper } from '@mui/material';
-import homepic from 'C:/Users/ASUS/matui/src/Chemical-Elements.jpg'
+import homepic from '../Chemical-Elements.jpg'
 
 export default function Home() {
   return (

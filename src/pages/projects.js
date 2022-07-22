@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import 'C:/Users/ASUS/matui/src/App.css';
+import '../App.css';
 import {Paper} from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -69,7 +69,8 @@ async function backendtrigger(e) {
   await axios(config) .then((response)=>{
     console.log(response)
     setStatus(1)
-    result = response.data.return_data
+    let res = response.data.return_data
+    setResult(res)
     console.log(result)
   })
 //   const res = await axios(config) 
