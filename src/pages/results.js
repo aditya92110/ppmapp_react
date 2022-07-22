@@ -23,7 +23,8 @@ export default class Results extends React.Component{
 
   
   componentDidMount(){
-    console.log(this.props)
+    console.log(this.props.state)
+    // const {location}= this.props;
   //  // const {name} = this.props.state
   //   // const location = useLocation();
     

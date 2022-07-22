@@ -6,6 +6,13 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { CSVLink } from 'react-csv';
+
+const headers = [
+        {label: 'S. No.', key:'iteration'},
+        {label: 'Chemical Name', key:'chem_name'},
+        {label: 'PPM Value', key:'ppm_value'},
+      ]
 
 
 
@@ -30,6 +37,18 @@ export default function Projects(){
   const data = {name:fileName}
   const [result,setResult] = useState([])
   const [status,setStatus] = useState(0)
+
+  // const data_json = [
+  //   {
+  //       "chem_name": "acetonitrile",
+  //       "ppm_value": "410 ppm",
+  //       "iteration": 0
+  //   },
+  //   {
+  //       "chem_name": "cumene",
+  //       "ppm_value": "1000 ppm",
+  //       "iteration": 1
+  //   },]
   //let result = []
 
   function handleFile(e){
@@ -138,10 +157,12 @@ async function backendtrigger(e) {
                 Trigger
 
             </button></Item>
-            {/* <Item><Button variant='outlined'  >
-            <Link to= '/results' state = {fileName}> View Results </Link>
-
-            </Button></Item>   */}
+            <Item><Link to="/results" state={result}>view_results</Link></Item>
+            <Item>
+              <CSVLink data={result} headers={headers} filename={"ExtractedData.csv"} target="_blank" style={{textDecoration:"none"}}>
+                <Button variant='outlined'  >Download</Button>
+              </CSVLink>
+            </Item>  
             
             
       </Stack>
