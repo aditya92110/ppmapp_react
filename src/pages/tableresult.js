@@ -59,7 +59,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function Results() {
+export default function ScrollResult() {
   const [file, setFile] = useState()
   const [triggerButton, setTriggerButton] = useState(false)
   const [fileName, setFileName] = useState("")
@@ -248,11 +248,9 @@ action={action}
               </Grid>
               
 
-
-
-
-    <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 500, marginLeft:15}} size="small" aria-label="a dense table">
+              <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <TableContainer>
+      <Table sx={{ maxWidth: 500, marginLeft:15, overflow:'hidden'}} size="small" aria-label="a dense table">
         <TableHead>
           <StyledTableRow>
             <StyledTableCell>S.No</StyledTableCell>
@@ -279,6 +277,8 @@ action={action}
         </TableBody>
       </Table>
     </TableContainer>
+    </Paper>
+    
   
 
 

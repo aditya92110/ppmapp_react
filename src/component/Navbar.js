@@ -14,11 +14,11 @@ function Navbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             LOGO
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 50 }}>
-            PPM_APP
+          </Typography> */}
+          <Typography variant="h6" component="div">
+            Chemical Data Extraction From API Reports
           </Typography>        
           <div className="links" >
             <Link to="/" className="links2">
@@ -28,7 +28,7 @@ function Navbar() {
               Projects
             </Link>
             <Link to="/dictionary" className="links2">
-              Dictionary
+              Chemical reference data
             </Link>
           </div>        
       </Toolbar>

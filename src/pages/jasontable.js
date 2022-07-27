@@ -1,41 +1,62 @@
-import React from 'react'
 import JsonData from './data.json'
-function JsonDataDisplay(){
-	//<Item className='tablediv'>
-	const DisplayData=JsonData.map(
-		(info)=>{
-			return(
-				<tr>
-					<td>{info.Number}</td>
-					<td>{info.ChemicalName}</td>
-					<td>{info.ChemicalFormula}</td>
-				</tr>
-			)
-		}
-	)
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
-	return(
-		<div>
-			<table className='jsontable'>
-				<thead>
-					<tr>
-					<th> <h2>Sr.NO</h2></th>
-					<th><h2>Chemical Name</h2></th>
-					<th><h2>Chemical formula</h2></th>
-					</tr>
-				</thead>
-				<tbody className='dislaylaykdkd'>
-				
-					
-					{DisplayData}
-					
-				</tbody>
-			</table>
-			
-		</div>
-	)
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.info.main,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
-	//</Item>
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+
+
+export default function CustomizedTables() {
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ maxWidth: 500, marginLeft:60}} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+		  <StyledTableCell>S.No</StyledTableCell>
+            
+            <StyledTableCell align="left">Chemical Name</StyledTableCell>
+            <StyledTableCell align="right">Chemical Formula</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {JsonData.map((row) => (
+            <StyledTableRow key={row.Nummber}>
+
+              
+			  <StyledTableCell align="left">{row.Number}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">
+                {row.ChemicalName}
+              </StyledTableCell>
+              <StyledTableCell align="right">{row.ChemicalFormula}</StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
-
-export default JsonDataDisplay;

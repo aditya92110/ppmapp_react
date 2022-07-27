@@ -19,7 +19,7 @@
   height: 30px;
   bottom: 0px;
   padding-bottom: 0%;
-  background-color:lightskyblue ;
+  background-color: #3f51b5 ;
   text-align: center;
 
 }
@@ -66,8 +66,12 @@
  
 }
 .jsontable{
-  border-top: 2px;
+  border-width: 5px;
+  border-top:black;
   padding-left: 500px;
+  border-bottom: 10px;
+  border-left: 10px;
+  border-right: 10px;
 }
 
 .chem{
@@ -94,18 +98,43 @@
  padding-left: 700px;
 }
 
+.form{
+  margin-left: 25;
+}
+
+.form-submit-button {
+  background: #1976d2;
+  color: white;
+  border-style: outset;
+  border-color: #1976d2;
+  height: 37px;
+  width: 100px;
+  font: bold15px arial,sans-serif;
+  text-shadow: none;
+  border-radius: 8px;
+  }
+
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+
 .typo{
   padding-left: 650px;
 }
 
 .links{
-  padding-left: 1050px;
+  padding-left: 600px;
   color: white;
 }
 
 .links2{
   color: white;
-  padding-left: 10px;
+  padding-left: 30px;
   font-size: large;
 }
 
@@ -118,6 +147,58 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Result {
+ 
+  width: 100%;
+  height: auto;
+  
+  
+  justify-content: center;
+  align-items: center;
+}
+  
+.table {
+ 
+  
+  justify-content: center;
+  border-top: 2px solid darkblue;
+  padding-left: 20px;
+  padding-top: 10px;
+  border-bottom: 2px solid  darkblue;
+  border-left: 2px solid  darkblue;
+  border-right: 2px solid darkblue;
+  width: 50%;
+}
+.table1{
+  border-width: 2px;
+  border-color: #282c34;
+  border-style: solid;
+ 
+  
+  justify-content: center;
+  
+  padding-left: 20px;
+  padding-top: 10px;
+
+  width: 50%;
+}
+
+ 
+  
+.td {
+  text-align: center;
+  border: 2px;
+  border-color: #282c34;
+
+}
+
+.tr {
+  text-align: center;
+  border: 2px;
+  border-color: #282c34;
+
 }
 
 .App-link {

@@ -1,5 +1,5 @@
-import { Button } from '@mui/material';
-import React, { useState } from 'react';
+import { Button, Grid } from '@mui/material';
+import  { useState } from 'react';
 import '../App.css';
 import {Paper} from '@mui/material';
 import Stack from '@mui/material/Stack';
@@ -7,6 +7,19 @@ import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { CSVLink } from 'react-csv';
+import { blue } from '@mui/material/colors';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import uploadImg from '../uploadImg.png'
+import {Divider} from '@mui/material';
+
+
+
+
+
 
 const headers = [
         {label: 'S. No.', key:'iteration'},
@@ -37,6 +50,57 @@ export default function Projects(){
   const data = {name:fileName}
   const [result,setResult] = useState([])
   const [status,setStatus] = useState(0)
+  const [triggerOpen, setTriggerOpen] = React.useState(false);
+
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleTriggerClose = () => {
+    setTriggerOpen(false);
+  };
+
+ 
+
+
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  const actionTrigger = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleTriggerClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleTriggerClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+
 
   // const data_json = [
   //   {
@@ -77,7 +141,8 @@ export default function Projects(){
 
 async function backendtrigger(e) {
   e.preventDefault();
-  
+  setTriggerOpen(true);
+
   const config = {
     method:'post',
     url: 'http://localhost:5050/inference',
@@ -92,17 +157,7 @@ async function backendtrigger(e) {
     setResult(res)
     console.log(result)
   })
-//   const res = await axios(config) 
 
-//   console.log(res)
-
-
-// setResult( prevState => [...prevState, JSON.stringify(res.data.result_data)]);
-//   console.log(result)
-// const res = await axios.post('http://localhost:5050/inference', fileName)
-//   console.log(res)
-//   setResult(res.data.result_data)
-//   console.log(result)
 
   
     
@@ -139,45 +194,94 @@ async function backendtrigger(e) {
   
 
   return (
-    <div className='upload'>
-      <Stack direction="row" spacing={2}>
-        <form onSubmit= {handleSubmit}><Item> <input type="file" name="file" onChange={ handleFile} /></Item>
+    
+    <Paper sx={{margin:3,padding:3}}>
+      
+      <Grid container spacing={2} sx={{display:'flex',alignItem:'center',justifyContent:'center'}}>
+      <Grid item spacing={2}>
+      <img src={uploadImg} width ='50' height='50'>
+        </img>
+        </Grid>
+        <Grid item>
+        <Divider orientation="vertical" flexItem /></Grid>
+        <Grid item   marginTop={2} spacing={2} direction='row'>
+       
+      <form onSubmit= {handleSubmit}> <input type="file" name="file" onChange={ handleFile} />
+
         {/* <Item> <Button variant='outlined' onClick={}>
                 Submit
-
             </Button></Item> */}
             {/* <Link to="/results">Submit</Link> */}
-        <Item> <button>
+        <button onClick={handleClick}>
+
                 Submit
 
-            </button></Item>
+            </button>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }} variant="filled">
+          PDF uploaded successfully
+        </Alert>
+      </Snackbar>
+            {/* <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="PDF uploaded successfully"
+        action={action}
+      /> */}
             </form>
             
-        <Item><button onClick={backendtrigger} >
+            </Grid>
+            <Grid item sx={{marginLeft:'auto'}} >
+        <Button onClick={backendtrigger} variant='contained'>
                 Trigger
+                
 
-            </button></Item>
-            <Item><Link to="/results" state={result}>view_results</Link></Item>
-            <Item>
-              <CSVLink data={result} headers={headers} filename={"ExtractedData.csv"} target="_blank" style={{textDecoration:"none"}}>
-                <Button variant='outlined'  >Download</Button>
-              </CSVLink>
-            </Item>  
+            </Button>
+            <Snackbar open={triggerOpen} autoHideDuration={6000} onClose={handleTriggerClose}>
+        <Alert onClose={handleTriggerClose} severity="success" sx={{ width: '100%' }} variant="filled">
+          Data is being processed
+        </Alert>
+      </Snackbar>
+            {/* <Snackbar
+        open={triggerOpen}
+        autoHideDuration={6000}
+        onClose={handleTriggerClose}
+        message="Data extraction is in process"
+        action={actionTrigger}
+      /> */}
+            </Grid>
+            
+           
             
             
-      </Stack>
-      <div>
+      
+      </Grid>
+      
       {
               status==1 && (
+                <Grid
+  container
+  direction="column"
+  justifyContent="center"
+  alignItems="center"
+>
+             
+                <Grid item >
+                <CSVLink data={result} headers={headers} filename={"ExtractedData.csv"} target="_blank" style={{textDecoration:"none"}}>
+                <Button variant='contained'  >Download</Button>
+              </CSVLink>
+                  
+                </Grid>
                 
-                  <table>
+                  <table className='table1'>
                     <thead>
 
                     
                     <tr>
-                      <td>S.No</td>
-                      <td>chem name</td>
-                      <td>ppm values</td>
+                      <td className='td'><h2>S.No</h2></td>
+                      <td className='td'> <h2>Chemical Names</h2></td>
+                      <td className='td'><h2>PPM values</h2></td>
                     </tr>
                     </thead>
                     <tbody>
@@ -185,21 +289,24 @@ async function backendtrigger(e) {
                    
                     {result.map((info,id)=>(
 			
-				<tr>
-					<td>{id+1}</td>
-					<td>{info.chem_name}</td>
-					<td>{info.ppm_value}</td>
+				<tr key={id} >
+
+					<td className='td'>{id+1}</td>
+					<td className='td'>{info.chem_name}</td>
+					<td className='td'>{info.ppm_value}</td>
 				</tr>
 			
                     ))}
                      </tbody>
 	
                   </table>
+                  </Grid>
                 
               )
             }
-      </div>
-    </div>
+            
+      
+    </Paper>
     
   );
 }
